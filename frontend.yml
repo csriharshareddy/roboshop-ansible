@@ -1,5 +1,6 @@
 - name: frontend setup
   hosts: all
+  become: true
   tasks:
 
   - name: disable default nginx
