@@ -12,15 +12,10 @@
     name: mongodb-mongosh
     state: installed
 
-- name: nodejs
+- name: setting up nodejs
   ansible.builtin.include_role:
     name: common
     tasks_from: nodejs.yml
-
-# - name: setting up nodejs
-#   ansible.builtin.include_role:
-#     name: common
-#     tasks_form: nodejs.yml
 
 - name: Load Master Data
   ansible.builtin.shell: mongosh --host mongodb-dev.mydevopsproject.online </app/db/master-data.js
