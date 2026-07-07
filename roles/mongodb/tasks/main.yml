@@ -16,6 +16,9 @@
 # systemd_setup
 
 ---
+- name: setting prompt
+  ansible.builtin.shell: set-prompt MongoDB
+
 - name: creating mongodb repo
   ansible.builtin.copy:
     src: mongo.repo
