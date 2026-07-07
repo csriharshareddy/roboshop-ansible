@@ -1,4 +1,3 @@
----
 - name: Disableing and enableing nodejs:20
   ansible.builtin.shell: dnf module disable nodejs; dnf module enable nodejs:20
 
