@@ -4,7 +4,7 @@
 - name: disable default nginx
   ansible.builtin.shell: dnf module disable nginx -y
 
-- name: disable default nginx
+- name: enableing default nginx
   ansible.builtin.shell: dnf module enable nginx:1.24 -y
 
 - name: installing nginx:1.24
