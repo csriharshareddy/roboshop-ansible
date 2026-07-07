@@ -12,7 +12,12 @@
     name: mongodb-mongosh
     state: installed
 
-- name: setting up Nodejs
+- name: nodejs
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs.yml
+
+- name: setting up nodejs
   ansible.builtin.include_role:
     name: common
     tasks_form: nodejs.yml
