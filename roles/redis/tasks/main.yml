@@ -1,0 +1,28 @@
+---
+- name: setting prompt
+  ansible.builtin.shell: set-prompt {{component_name}}
+
+- name: disableing and enableing Redis
+  ansible.builtin.shell: dnf module disable redis -y; dnf module enable redis:7
+
+- name: installing Redis
+  ansible.builtin.dnf: 
+    name: redis
+    state: installed
+
+- name: MongoDB config
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: MongoDB config
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: 'protected-mode yes'
+    replace: 'protected-mode no'
+
+- name: restarting redis
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd_setup.yml
