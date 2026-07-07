@@ -22,15 +22,14 @@
     path: /usr/share/nginx/html
     state: absent
 
-# - name: creating new directory for data
-#   ansible.builtin.file:
-#     path: /usr/share/nginx/html
-#     state: directory
+- name: creating new directory for data
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
 
 - name: downloadingn and unziping app data
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-    creates: /usr/share/nginx/html
     dest: /usr/share/nginx/html
     remote_src: yes
 
