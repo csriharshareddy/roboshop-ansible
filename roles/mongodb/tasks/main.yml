@@ -16,7 +16,7 @@
   ansible.builtin.lineinfile:
     path: /etc/mongod.conf
     regexp: '127.0.0.1'
-    line: '0.0.0.0'
+    line: ' 0.0.0.0'
 
 - name: enable and restart mongod
   ansible.builtin.systemd_service:
