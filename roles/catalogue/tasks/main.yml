@@ -1,6 +1,6 @@
 ---
 - name: setting prompt
-  ansible.builtin.shell: set-prompt {{"component_name"}}
+  ansible.builtin.shell: "set-prompt {{component_name}}"
 
 - name: creating mongodb repo
   ansible.builtin.copy:
