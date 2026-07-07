@@ -30,7 +30,7 @@
 - name: downloadingn and unziping app data
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-    create: /usr/share/nginx/html
+    creates: /usr/share/nginx/html
     dest: /usr/share/nginx/html
     remote_src: yes
 
