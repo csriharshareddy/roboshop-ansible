@@ -1,0 +1,43 @@
+- name: setting prompt
+  ansible.builtin.shell: set-prompt frontend
+
+- name: disable default nginx
+  ansible.builtin.shell: dnf module disable nginx -y
+
+- name: disable default nginx
+  ansible.builtin.shell: dnf module enable nginx:1.24 -y
+
+- name: installing nginx:1.24
+  ansible.builtin.dnf: 
+    name: nginx
+    state: installed
+
+- name: setting nginx.conf
+  ansible.builtin.copy:
+    src: nginx.conf 
+    dest: /etc/nginx/nginx.conf
+
+- name: removin old data along with directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+# - name: creating new directory for data
+#   ansible.builtin.file:
+#     path: /usr/share/nginx/html
+#     state: directory
+
+- name: downloadingn and unziping app data
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+    create: /usr/share/nginx/html
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+
+- name: enableing and starting nginx
+  ansible.builtin.systemd_service:
+    name: nginx
+    enabled: true
+    state: started
+      

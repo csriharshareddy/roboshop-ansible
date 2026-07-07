@@ -1,41 +1,7 @@
 - name: frontend setup
   hosts: all
   become: true
-  tasks:
+  roles:
+    - frontend
 
-  - name: disable default nginx
-    ansible.builtin.shell: dnf module disable nginx -y
-
-  - name: disable default nginx
-    ansible.builtin.shell: dnf module enable nginx:1.24 -y
-
-  - name: installing nginx:1.24
-    ansible.builtin.dnf: 
-      name: nginx
-      state: installed
-
-  - name: enableing and starting nginx
-    ansible.builtin.systemd_service:
-      name: nginx
-      enabled: true
-      state: started
-      
-
-
-
-# # Install Nginx
-# dnf module disable nginx -y
-# dnf module enable nginx:1.24 -y
-# dnf install nginx -y
-# # setting up .conf 
-# cp frontend.conf /etc/nginx/nginx.conf
-# # removeing orginal nginx html files
-# rm -rf /usr/share/nginx/html/* 
-# # downloading and unziping html data 
-# curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-# cd /usr/share/nginx/html 
-# unzip /tmp/frontend.zip
-# systemctl enable mongod 
-# systemctl start mongod  nginx
-# systemctl enable nginx && systemctl restart nginx
 
