@@ -1,0 +1,21 @@
+---
+- name: setting prompt
+  ansible.builtin.shell: set-prompt {{"component_name"}}
+
+- name: creating mongodb repo
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: installing MongoDB
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: installed
+
+- name: setting up Nodejs
+  ansible.builtin.include_role:
+    name: common
+    tasks_form: nodejs.yml
+
+- name: Load Master Data
+  ansible.builtin.shell: mongosh --host mongodb-dev.mydevopsproject.online </app/db/master-data.js
