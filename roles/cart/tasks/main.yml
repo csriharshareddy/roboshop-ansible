@@ -1,0 +1,8 @@
+---
+- name: setting prompt
+  ansible.builtin.shell: "set-prompt {{component_name}}"
+
+- name: settin up nodejs
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs.yml
