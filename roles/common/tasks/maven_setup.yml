@@ -12,7 +12,7 @@
   ansible.builtin.include_tasks:
     file: systemd_setup.yml
 
-- name: Change the working directory to somedir/ before executing the command
+- name: Maven Dependecy
   ansible.builtin.shell: mvn clean package ; mv target/{{ component_name }}-1.0.jar {{ component_name }}.jar 
   args:
     chdir: /app

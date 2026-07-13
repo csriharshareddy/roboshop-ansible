@@ -14,7 +14,7 @@
 
 - name: enable and restart rabbitmq-server
   ansible.builtin.systemd_service:
-    name: rabbitmq
+    name: rabbitmq-server
     enabled: true
     state: restarted
 
