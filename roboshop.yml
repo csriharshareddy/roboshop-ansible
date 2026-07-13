@@ -1,8 +1,7 @@
-- name: Roboshop Setup
+- name: "{{component_name}} Setup" 
   hosts: all
   become: true
   roles:
-    - present_role
     - "{{component_name}}"
 
 
