@@ -1,0 +1,12 @@
+# # setting up payment
+# python_setup
+# # enableing and restaring payment.service
+# systemd_setup
+---
+- name: setting prompt
+  ansible.builtin.shell: "set-prompt {{component_name}}"
+  
+- name: setting up payment
+  ansible.builtin.include_role: 
+    name: common
+    tasks_from: python_setup.yml

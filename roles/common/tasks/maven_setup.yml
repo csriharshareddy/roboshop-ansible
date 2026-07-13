@@ -1,0 +1,23 @@
+---
+- name: Installing maven
+  ansible.builtin.dnf:
+    name: maven 
+    state: installed
+
+- name: artiface download
+  ansible.builtin.include_tasks:
+    file: artifact_download.yml
+
+- name: artiface download
+  ansible.builtin.include_tasks:
+    file: systemd_setup.yml
+
+- name: Change the working directory to somedir/ before executing the command
+  ansible.builtin.shell: mvn clean package ; mv target/{{ component_name }}-1.0.jar {{ component_name }}.jar 
+  args:
+    chdir: /app
+
+- name: systemd_setup
+  ansible.builtin.include_tasks:
+    file: systemd_setup.yml
+

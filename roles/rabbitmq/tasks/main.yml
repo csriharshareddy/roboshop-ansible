@@ -1,0 +1,23 @@
+---
+- name: setting prompt
+  ansible.builtin.shell: "set-prompt {{component_name }}"
+
+- name: creating rabbitmq repo
+  ansible.builtin.copy:
+    src: "{{ component_name }}.repo"
+    dest: /etc/yum.repos.d/{{ component_name }}.repo
+
+- name: installing rabbitmq server
+  ansible.builtin.dnf:
+    name: rabbitmq-server
+    state: installed
+
+- name: enable and restart rabbitmq-server
+  ansible.builtin.systemd_service:
+    name: rabbitmq
+    enabled: true
+    state: restarted
+
+- name: creating user and giving permissions
+  ansible.builtin.shell: rabbitmqctl add_user roboshop roboshop123 ; rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+
