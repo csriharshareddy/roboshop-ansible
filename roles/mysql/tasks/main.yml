@@ -6,7 +6,7 @@
 
 - name: restarting mysql.service
   ansible.builtin.systemd_service:
-    name: mysql-server
+    name: mysqld
     enabled: true 
     state: restarted
     daemon_reload: yes
