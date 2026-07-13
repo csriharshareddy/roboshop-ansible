@@ -18,7 +18,7 @@
     src: nginx.conf 
     dest: /etc/nginx/nginx.conf
 
-- name: removin old data along with directory
+- name: removing old data along with directory
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
