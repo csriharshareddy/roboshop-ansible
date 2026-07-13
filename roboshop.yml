@@ -2,9 +2,7 @@
   hosts: all
   become: true
   roles:
-    - name: "Print the current play name"
-      ansible.builtin.debug:
-        msg: "The currently executing play is: {{ component_name }}"
+    - present_role
     - "{{component_name}}"
 
 
